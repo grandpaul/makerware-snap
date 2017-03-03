@@ -1,0 +1,30 @@
+#!/bin/sh
+
+LICENSE_ACCEPTED_PATH="${HOME}/.makerware-license-accepted"
+LICENSE_FILE=$SNAP'/usr/share/makerbot/License.txt'
+
+unset ACCEPTED
+
+if [ -e ${LICENSE_ACCEPTED_PATH} ] ; then ACCEPTED=1; fi
+
+if [ ! ${ACCEPTED} ] ; then
+    zenity --text-info --title License --checkbox 'I read and accept the terms.' --filename ${LICENSE_FILE} && export ACCEPTED=1
+    if [ ${ACCEPTED} ] ; then
+	# We'll write the hash of the license file
+	md5sum < ${LICENSE_FILE} > ${LICENSE_ACCEPTED_PATH}
+	touch ${LICENSE_ACCEPTED_PATH}
+    else
+	echo "License declined; MakerWare will not run."
+	exit 1
+    fi
+fi
+
+if [ ${ACCEPTED} ] ; then
+#this check is no longer needed see jira ticket 3589 for details
+ #   if [ `lsb_release -s -c` = 'oneiric' ] ; then
+#	export LD_LIBRARY_PATH="/usr/lib/makerbot${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+#    fi
+    SCRIPTDIR=$(dirname $0)
+    $SCRIPTDIR/../share/makerbot/makerware "$@"
+fi
+
