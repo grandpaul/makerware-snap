@@ -2,8 +2,8 @@
 ===========================
 
 "makerware" is a software to control MakerBot 3D printers and
-to slice 3D models. However makerware can only be run on Xenial
-and Trusty. Also to install makerware on Xenial it
+to slice 3D models. However, makerware can only be run on Xenial
+and Trusty. And to install makerware on Xenial it
 requires you to replace the python to a customize one which
 might taint the system. Now Ubuntu provides a new packaging format
 called snap which can pack all its dependencies inside.
@@ -23,6 +23,7 @@ we don't want to taint your system, please create a pbuilder
 environment for Xenial at first by the following steps:
 
  1. Create xenial chroot environment
+
     ~~~
     pbuilder-dist xenial create
     ~~~
