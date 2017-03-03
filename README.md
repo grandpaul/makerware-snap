@@ -69,7 +69,7 @@ Note: pbuilder-dist is in ubuntu-dev-tools package. Please install it first.
     actually the steps of
     [official page](https://support.makerbot.com/learn/makerbot-desktop-software/installation-and-setup/how-to-install-makerbot-desktop-for-linux_11262)
     ~~~
-    ./prepare_in_xenial_chroot.sh  # this is actually
+    ./prepare_in_xenial_chroot.sh
     ~~~
 
  8. Run snapcraft
